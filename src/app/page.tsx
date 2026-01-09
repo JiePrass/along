@@ -1,10 +1,11 @@
-import { Button } from "@/components/ui/button";
+import HeroSection from "@/components/landing/hero-section";
+import Header from "@/components/layouts/header";
 
 export default function Home() {
   return (
-    <>
-      ALONG INIT
-      <Button>Testing Shadcn</Button>
-    </>
+    <main className="relative">
+      <Header />
+      <HeroSection />
+    </main>
   );
 }
