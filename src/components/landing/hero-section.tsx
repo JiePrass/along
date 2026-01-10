@@ -160,8 +160,9 @@ export default function HeroSection() {
             <div className="relative z-30 flex items-center justify-center h-full pointer-events-none">
                 <div
                     ref={centerBoxRef}
-                    className="relative w-70 md:w-87.5 py-24 md:py-32 px-8 flex items-center justify-center origin-center"
+                    className="relative w-full max-w-78 mb-32 mt-0 md:mt-4 md:mb-0 md:max-w-sm p-6 md:p-8 flex flex-col justify-between origin-center bg-transparent"
                 >
+                    {/* SVG Border (Tetap sama) */}
                     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <rect
                             ref={borderRef}
@@ -172,10 +173,30 @@ export default function HeroSection() {
                             vectorEffect="non-scaling-stroke"
                         />
                     </svg>
-                    <div ref={textRef}>
-                        <h1 className="text-white text-3xl md:text-5xl uppercase text-center font-serif tracking-widest leading-tight">
-                            Langkah <br /> Kecil <br /> Untuk
-                        </h1>
+
+                    <div ref={textRef} className="relative z-10 flex flex-col justify-between h-full gap-12">
+
+                        <div className="flex flex-col gap-6 text-left">
+                            <h1 className="text-white text-3xl md:text-5xl font-serif leading-[0.95] tracking-tight">
+                                Jelajahi <br />
+                                Indonesia Secara <br />
+                                Langsung <br />
+                                Bersama ALONG
+                            </h1>
+
+                            <p className="text-white/90 font-sans font-medium leading-relaxed max-w-sm">
+                                GreenFlow adalah aplikasi untuk memantau jejak karbon dan berpartisipasi
+                            </p>
+                        </div>
+
+                        {/* Bagian Bawah: Tombol (Pojok Kanan Bawah) */}
+                        <div className="flex justify-end pointer-events-auto">
+                            <button className="group border border-white px-6 py-3 text-white text-sm md:text-base uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-3">
+                                Jelajahi Sekarang
+                                <span className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 text-lg">↗</span>
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
