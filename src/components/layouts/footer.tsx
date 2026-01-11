@@ -22,7 +22,7 @@ export default function Footer() {
 
             <div className="container mx-auto px-6 md:px-12 lg:px-16 py-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-64">
                 <div className="flex flex-col justify-between">
-                    <h1 className="text-4xl md:text-5xl font-semibold">
+                    <h1 className="text-4xl md:text-5xl font-bethany leading-[1.05] ">
                         Menjelajahi Keindahan Indonesia bersama Along
                     </h1>
 
@@ -70,8 +70,8 @@ export default function Footer() {
 
             <div className="container mx-auto px-6 md:px-12 lg:px-16">
                 <div className="flex justify-center items-center">
-                    <h1 className="text-[133px] md:text-[323px] cursor-default mb-8 md:mb-16 leading-none font-semibold text-center">
-                        Along
+                    <h1 className="text-[133px] md:text-[333px] cursor-default my-8 leading-none font-extralight font-bethany text-center">
+                        ALONG
                     </h1>
                 </div>
 

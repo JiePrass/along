@@ -18,6 +18,11 @@ const sfPro = localFont({
   display: "swap",
 });
 
+const bethany = localFont({
+  src: "../../public/fonts/Bethany-Elingston.otf",
+  variable: "--font-bethany",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Along",
@@ -32,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sfPro.variable} antialiased bg-[#DDDDD1] text-[#2D1C04]`}
+        className={`${sfPro.variable} ${bethany.variable} antialiased bg-[#DDDDD1] text-[#2D1C04]`}
       >
         {children}
       </body>

@@ -26,10 +26,10 @@ export default function CTASection() {
                 </div>
 
                 {/* Main Text */}
-                <h2 className="max-w-72 md:max-w-3xl text-3xl md:text-6xl font-serif leading-tight tracking-tight mb-12">
+                <h2 className="max-w-72 md:max-w-3xl text-3xl md:text-6xl font-bethany leading-tight tracking-tight mb-12">
                     Tanah ini, air ini, udara ini,
                     planet ini, itu adalah {" "}
-                    <span className="bg-[#2D1C04] font-normal text-stone-100 px-4 py-1 rotate-1 inline-block shadow-lg">
+                    <span className="bg-[#2D1C04] font-sans text-white font-medium px-4 py-1 rotate-1 inline-block shadow-lg">
                         Warisan
                     </span>
                     {" "} kita bagi anak kita.

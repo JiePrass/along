@@ -176,16 +176,13 @@ export default function HeroSection() {
 
                     <div ref={textRef} className="relative z-10 flex flex-col justify-between h-full gap-12">
 
-                        <div className="flex flex-col gap-6 text-left">
-                            <h1 className="text-white text-3xl md:text-5xl font-serif leading-[0.95] tracking-tight">
-                                Jelajahi <br />
-                                Indonesia Secara <br />
-                                Langsung <br />
-                                Bersama ALONG
+                        <div className="flex flex-col text-left">
+                            <h1 className="text-white text-3xl md:text-[44px] font-bethany leading-[1.05] tracking-tight">
+                                Jelajahi <br /> Indonesia Secara Langsung Bersama ALONG
                             </h1>
 
-                            <p className="text-white/90 font-sans font-medium leading-relaxed max-w-sm">
-                                GreenFlow adalah aplikasi untuk memantau jejak karbon dan berpartisipasi
+                            <p className="text-white/90 font-medium max-w-64">
+                                Platform pariwisata terbaik yang menghubungkan Anda dengan kekayaan nusantara
                             </p>
                         </div>
 
