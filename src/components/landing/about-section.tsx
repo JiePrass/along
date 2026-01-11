@@ -99,7 +99,7 @@ export default function AboutSection() {
         <section
             id="about"
             ref={sectionRef}
-            className="relative w-full container px-6 mx-auto z-10"
+            className="relative w-full container px-6 md:px-12 lg:px-16 mx-auto z-10"
         >
             <div className="sticky top-0 h-screen w-full z-50 pointer-events-none">
                 <div className="absolute inset-0 hidden lg:block">
@@ -141,7 +141,7 @@ export default function AboutSection() {
                         </div>
                     </div>
 
-                    <div className="relative w-full aspect-16/7 overflow-hidden shadow-sm">
+                    <div className="relative w-full aspect-21/7 overflow-hidden shadow-sm">
                         <Image
                             src="/images/about.png"
                             alt="Classic Painting"

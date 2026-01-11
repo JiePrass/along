@@ -121,7 +121,7 @@ export default function DestinationSection() {
             onMouseEnter={stopAutoPlay}
             onMouseLeave={startAutoPlay}
         >
-            <div className="px-6 container mx-auto">
+            <div className="px-6 md:px-12 lg:px-16 container mx-auto">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="flex items-center gap-4 md:gap-8 flex-1">
                         <h2 className="text-3xl md:text-5xl font-serif whitespace-nowrap">
