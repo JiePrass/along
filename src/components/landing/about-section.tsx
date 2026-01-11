@@ -7,6 +7,8 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { Environment, Center } from "@react-three/drei";
 import { ModelKristal } from "@/components/3d/model-kristal";
 import * as THREE from "three";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -123,18 +125,18 @@ export default function AboutSection() {
                                     Apa Itu Along? &gt;
                                 </button>
                             </div>
-                            <h2 className="text-3xl md:text-[64px] font-serif leading-[0.9] tracking-tight text-[#2A2A2A]">
+                            <h2 className="text-3xl md:text-[64px] font-serif leading-[0.9] tracking-tight">
                                 Temukan Berbagai <br /> Keindahan Nusantara
                             </h2>
                         </div>
                         <div className="flex flex-col gap-4 justify-between md:items-end">
-                            <div className="max-w-md md:text-right text-lg leading-relaxed font-medium text-[#2A2A2A]/80">
+                            <div className="max-w-md md:text-right text-lg leading-relaxed font-medium/80">
                                 Along adalah platform pariwisata Indonesia yang memungkinkan pengguna untuk menjelajahi destinasi wisata terbaik
                             </div>
                             <div className="flex md:justify-end">
-                                <button className="pointer-events-auto border border-[#2A2A2A] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:bg-[#2A2A2A] hover:text-[#EAE7DD] transition-all flex items-center gap-2 text-[#2A2A2A]">
-                                    Jelajahi Sekarang <span className="text-lg">↗</span>
-                                </button>
+                                <Link href="/wisata" className="pointer-events-auto z-55 border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
+                                    Jelajahi Sekarang <ArrowUpRight size={20} />
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -197,7 +199,7 @@ export default function AboutSection() {
                 {/* ... (Konten Daftar Kota) ... */}
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-12 lg:py-24">
                     <div className="flex flex-col items-start max-w-xl">
-                        <h2 className="text-3xl md:text-[64px] font-serif leading-[0.9] tracking-tight text-[#2A2A2A]">
+                        <h2 className="text-3xl md:text-[64px] font-serif leading-[0.9] tracking-tight">
                             Menjelajahi Keindahan Indonesia
                             Dengan Along
                         </h2>
@@ -206,18 +208,18 @@ export default function AboutSection() {
                                 Dengan Along, nikmati pengalaman wisata yang mudah, menyenangkan, dan penuh inspirasi.
                             </span>
                         </div>
-                        <button className="pointer-events-auto border border-[#2A2A2A] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:bg-[#2A2A2A] hover:text-[#EAE7DD] transition-all flex items-center gap-2 text-[#2A2A2A]">
-                            Jelajahi Sekarang <span className="text-lg">↗</span>
-                        </button>
+                        <Link href="/wisata" className="pointer-events-auto z-55 border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
+                            Jelajahi Sekarang <ArrowUpRight size={20} />
+                        </Link>
                     </div>
 
                     <div className="relative md:h-125 w-full hidden md:block">
-                        <div className="absolute top-16 left-1/4 font-serif text-4xl md:text-5xl text-[#2A2A2A]">Makassar</div>
-                        <div className="absolute top-28 right-7 font-serif text-4xl md:text-5xl text-[#2A2A2A]">Jayapura</div>
-                        <div className="absolute top-44 left-8 font-serif text-4xl md:text-5xl text-[#2A2A2A]">Yogyakarta</div>
-                        <div className="absolute top-64 right-18 font-serif text-4xl md:text-5xl text-[#2A2A2A]">Medan</div>
-                        <div className="absolute bottom-18 right-24 font-serif text-6xl md:text-5xl text-[#2A2A2A]">Ambon</div>
-                        <div className="absolute bottom-32 left-26 font-serif text-4xl md:text-5xl text-[#2A2A2A]">Bali</div>
+                        <div className="absolute top-16 left-1/4 font-serif text-4xl md:text-5xl">Makassar</div>
+                        <div className="absolute top-28 right-7 font-serif text-4xl md:text-5xl">Jayapura</div>
+                        <div className="absolute top-44 left-8 font-serif text-4xl md:text-5xl">Yogyakarta</div>
+                        <div className="absolute top-64 right-18 font-serif text-4xl md:text-5xl">Medan</div>
+                        <div className="absolute bottom-18 right-24 font-serif text-6xl md:text-5xl">Ambon</div>
+                        <div className="absolute bottom-32 left-26 font-serif text-4xl md:text-5xl">Bali</div>
                     </div>
                 </div>
 

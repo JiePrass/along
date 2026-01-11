@@ -43,7 +43,7 @@ export default function Header() {
     };
 
     useEffect(() => {
-        const targetSections = ['#about', '#destination', '#wisata', '#kuliner'];
+        const targetSections = ['#about', '#destination', '#cta'];
 
         const observer = new IntersectionObserver(
             (entries) => {
