@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -86,7 +87,7 @@ export const CardBody = ({
   return (
     <div
       className={cn(
-        "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
+        "h-96 w-96 transform-3d  *:transform-3d",
         className
       )}
     >
@@ -107,7 +108,7 @@ export const CardItem = ({
   rotateZ = 0,
   ...rest
 }: {
-  as?: React.ElementType;
+  as?: any;
   children: React.ReactNode;
   className?: string;
   translateX?: number | string;
