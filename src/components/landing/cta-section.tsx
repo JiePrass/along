@@ -38,7 +38,7 @@ export default function CTASection() {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
                     <Link
-                        href="/explore"
+                        href="/wisata"
                         className="group flex items-center gap-2 border border-[#2D1C04] px-6 py-2 text-lg font-medium transition-all hover:bg-[#2D1C04] hover:text-white"
                     >
                         Jelajahi Sekarang
@@ -49,7 +49,7 @@ export default function CTASection() {
                         href="/mission"
                         className="text-lg font-medium hover:text-white"
                     >
-                        Lihat Misi Saya
+                        Cari Kuliner
                     </Link>
                 </div>
 
