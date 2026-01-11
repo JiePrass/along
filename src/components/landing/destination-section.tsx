@@ -122,7 +122,7 @@ export default function DestinationSection() {
             onMouseLeave={startAutoPlay}
         >
             <div className="px-6 container mx-auto">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 md:mb-12 gap-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="flex items-center gap-4 md:gap-8 flex-1">
                         <h2 className="text-3xl md:text-5xl font-serif whitespace-nowrap">
                             Temukan Destinasi Anda
@@ -138,11 +138,11 @@ export default function DestinationSection() {
                 <div className="relative touch-pan-y" ref={containerRef}>
                     <div
                         ref={sliderRef}
-                        className="flex gap-6 md:gap-10"
+                        className="flex gap-6 pb-12 md:pb-22 md:gap-10"
                         style={{ cursor: 'grab' }}
                     >
                         {loopDestinations.map((dest, index) => (
-                            <div key={index} className="w-[85vw] md:w-100 shrink-0 select-none">
+                            <div key={index} className="w-[85vw] md:w-100 select-none">
                                 <DestinationCard
                                     image={dest.image}
                                     description={dest.description}

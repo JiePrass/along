@@ -5,7 +5,7 @@ export default function CTASection() {
     return (
         <section
             id="cta"
-            className="relative min-h-screen py-24 w-full flex items-center justify-center overflow-hidden"
+            className="relative min-h-screen py-12 md:py-24 w-full flex items-center justify-center overflow-hidden"
         >
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -18,21 +18,21 @@ export default function CTASection() {
             <div className="relative z-10 max-w-4xl px-6 py-20 text-center">
 
                 {/* Quote Icons (Decorative) */}
-                <div className="absolute top-0 left-0 text-[16rem] leading-none select-none opacity-50 -translate-y-4 -translate-x-12 font-serif">
+                <div className="absolute top-10 left-10 lg:top-0 lg:left-0 text-[8rem] md:text-[16rem] leading-none select-none opacity-50 -translate-y-4 -translate-x-12 font-serif">
                     “
                 </div>
-                <div className="absolute top-0 right-0 text-[16rem] leading-none select-none opacity-50 -translate-y-4 translate-x-12 font-serif">
+                <div className="absolute top-10 right-10 lg:top-0 lg:right-0 text-[8rem] md:text-[16rem] leading-none select-none opacity-50 -translate-y-4 translate-x-12 font-serif">
                     ”
                 </div>
 
                 {/* Main Text */}
-                <h2 className="text-4xl md:text-6xl font-serif leading-tight tracking-tight mb-12">
-                    Tanah ini, air ini, udara ini, <br />
+                <h2 className="max-w-72 md:max-w-3xl text-3xl md:text-6xl font-serif leading-tight tracking-tight mb-12">
+                    Tanah ini, air ini, udara ini,
                     planet ini, itu adalah {" "}
                     <span className="bg-[#2D1C04] font-normal text-stone-100 px-4 py-1 rotate-1 inline-block shadow-lg">
                         Warisan
                     </span>
-                    <br /> kita bagi anak kita.
+                    {" "} kita bagi anak kita.
                 </h2>
 
                 {/* Action Buttons */}
