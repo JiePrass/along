@@ -95,6 +95,7 @@ export default function AboutSection() {
 
     return (
         <section
+            id="about"
             ref={sectionRef}
             className="relative w-full container px-6 mx-auto z-10"
         >
@@ -183,10 +184,10 @@ export default function AboutSection() {
                         </div>
 
                         <div className="font-serif text-2xl leading-snug">
-                            <span className="text-[#1a1a1a]">
+                            <span className="">
                                 Temukan destinasi terbaik, panduan lokal, {" "}
                             </span>
-                            <span className="text-[#1a1a1a]/40">
+                            <span className="opacity-60">
                                 dan berbagai informasi menarik dari seluruh pelosok Indonesia.
                             </span>
                         </div>
@@ -201,7 +202,7 @@ export default function AboutSection() {
                             Dengan Along
                         </h2>
                         <div className="font-serif text-xl my-8 max-w-md font-medium leading-snug">
-                            <span className="text-[#1a1a1a]">
+                            <span className="">
                                 Dengan Along, nikmati pengalaman wisata yang mudah, menyenangkan, dan penuh inspirasi.
                             </span>
                         </div>

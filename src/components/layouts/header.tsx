@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import Link from 'next/link';
@@ -35,11 +35,39 @@ const navItems = [
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [isBlack, setIsBlack] = useState(false)
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
         setHoveredIndex(null);
     };
+
+    useEffect(() => {
+        const targetSections = ['#about', '#destination', '#wisata', '#kuliner'];
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const isAnySectionVisible = entries.some(entry => entry.isIntersecting);
+
+                if (isAnySectionVisible) {
+                    setIsBlack(true);
+                } else {
+                    setIsBlack(false);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: "-80px 0px 0px 0px"
+            }
+        );
+
+        targetSections.forEach(id => {
+            const el = document.querySelector(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <>
@@ -49,23 +77,19 @@ export default function Header() {
             >
                 <div className="container mx-auto px-6 h-24 flex items-center justify-between">
                     <div className="flex-1 flex justify-start">
-                        <LogoIcon size={32} className="cursor-pointer" />
+                        <LogoIcon size={32} className={`cursor-pointer transition-colors duration-500 ${menuOpen || isBlack ? 'text-black' : 'text-white'}`} />
                     </div>
 
                     <div className="flex-none">
-                        <MainLogo width={120} height={40} className="cursor-pointer" />
+                        <MainLogo width={120} height={40} className={`cursor-pointer transition-colors duration-500 ${menuOpen || isBlack ? 'text-black' : 'text-white'}`} />
                     </div>
 
                     <div className="flex-1 flex justify-end items-center">
                         <button
-                            className="p-2 flex items-center gap-2 group transition-all"
+                            className={`p-2 flex items-center gap-2 group transition-all ${menuOpen || isBlack ? 'text-black' : 'text-white'}`}
                             onClick={toggleMenu}
                             aria-label="Toggle Menu"
                         >
-                            <span className={`text-lg font-medium transition-opacity hidden md:block duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                                {menuOpen ? 'close' : ''}
-                            </span>
-
                             <div className="relative w-8 h-8 flex items-center justify-center">
                                 <IoMdClose
                                     size={30}
