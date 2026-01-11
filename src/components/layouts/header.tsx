@@ -75,7 +75,7 @@ export default function Header() {
                 className={`fixed top-0 left-0 w-full z-100 transition-colors delay-200 duration-300 
                 ${menuOpen ? 'bg-white text-black' : 'bg-transparent text-white'}`}
             >
-                <div className="container mx-auto px-6 h-24 flex items-center justify-between">
+                <div className="container mx-auto px-6 md:px-12 lg:px-16 h-24 flex items-center justify-between">
                     <div className="flex-1 flex justify-start">
                         <LogoIcon size={32} className={`cursor-pointer transition-colors duration-500 ${menuOpen || isBlack ? 'text-black' : 'text-white'}`} />
                     </div>

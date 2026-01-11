@@ -14,13 +14,13 @@ export default function Footer() {
 
     return (
         <footer className="text-white bg-[#322410] py-8 overflow-hidden">
-            <div className="container mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
+            <div className="container mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row md:justify-between md:items-center gap-6">
                 <div className="flex-none">
                     <MainLogo width={120} height={40} className="cursor-pointer" />
                 </div>
             </div>
 
-            <div className="container mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-64">
+            <div className="container mx-auto px-6 md:px-12 lg:px-16 py-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-64">
                 <div className="flex flex-col justify-between">
                     <h1 className="text-4xl md:text-5xl font-semibold">
                         Menjelajahi Keindahan Indonesia bersama Along
@@ -68,7 +68,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-6 md:px-12 lg:px-16">
                 <div className="flex justify-center items-center">
                     <h1 className="text-[133px] md:text-[323px] cursor-default mb-8 md:mb-16 leading-none font-semibold text-center">
                         Along

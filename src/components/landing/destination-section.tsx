@@ -138,7 +138,7 @@ export default function DestinationSection() {
                 <div className="relative touch-pan-y" ref={containerRef}>
                     <div
                         ref={sliderRef}
-                        className="flex gap-6 pb-12 md:pb-22 md:gap-10"
+                        className="flex gap-6 pb-12 md:pb-22"
                         style={{ cursor: 'grab' }}
                     >
                         {loopDestinations.map((dest, index) => (
