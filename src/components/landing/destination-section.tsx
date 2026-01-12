@@ -117,7 +117,7 @@ export default function DestinationSection() {
     return (
         <section
             id="destination"
-            className="py-12 md:py-20 overflow-hidden"
+            className="py-12 md:py-32 overflow-hidden"
             onMouseEnter={stopAutoPlay}
             onMouseLeave={startAutoPlay}
         >

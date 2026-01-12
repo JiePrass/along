@@ -1,26 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Html } from "@react-three/drei";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-interface TooltipProps {
-    data: {
-        label: string;
-        desc: string;
-        image: string;
-        position: [number, number, number];
-    };
-    isVisible: boolean;
-}
-
-export function SotoTooltip({ data, isVisible }: TooltipProps) {
+export function SotoTooltip({ data, isVisible }: any) {
     const [isHovered, setIsHovered] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // --- LOGIKA OTOMATIS ---
-    // Cek sumbu Y (index ke-1 dari array position).
-    // Jika Y > 0.5 (posisi tinggi), maka tooltip harus muncul di BAWAH titik agar tidak kepotong.
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     const isTooHigh = data.position[1] > 0.5;
+
+    const getHorizontalClass = () => {
+        if (!isMobile) return "-translate-x-1/2 left-1/2";
+        if (data.position[0] < -0.3) return "left-0 translate-x-2";
+        if (data.position[0] > 0.3) return "right-0 -translate-x-2";
+        return "-translate-x-1/2 left-1/2";
+    };
 
     return (
         <Html
@@ -30,69 +33,68 @@ export function SotoTooltip({ data, isVisible }: TooltipProps) {
             style={{
                 pointerEvents: isVisible ? "auto" : "none",
                 transition: 'opacity 0.5s',
-                opacity: isVisible ? 1 : 0
+                opacity: isVisible ? 1 : 0,
+                transform: ` scale(${isMobile ? 0.8 : 1})`,
             }}
         >
             <div
                 className="relative flex items-center justify-center"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                onClick={() => isMobile && setIsHovered(!isHovered)}
             >
-                {/* --- 1. HOTSPOT (Titik Kuning) --- */}
+                {/* --- 1. HOTSPOT (Lingkaran Bulat Sempurna) --- */}
                 <div className={`
-                    w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 relative z-20
+                    aspect-square w-8 h-8 rounded-full flex items-center justify-center cursor-pointer transition-transform duration-300 relative z-10
                     ${isVisible ? 'scale-100' : 'scale-0'}
-                    ${isHovered ? 'bg-white scale-125' : 'bg-[#2D1C04]'}
+                    ${isHovered ? 'bg-white scale-110' : 'bg-[#2D1C04]'}
                 `}>
                     <div className={`w-2 h-2 rounded-full ${isHovered ? 'bg-[#2D1C04]' : 'bg-white animate-ping'}`} />
                 </div>
 
                 {/* --- 2. CARD CONTENT --- */}
                 <div className={`
-                    absolute left-1/2 -translate-x-1/2 p-4 w-72 bg-white rounded-lg shadow-2xl overflow-hidden z-10
-                    transition-all duration-500 ease-out
+                    absolute p-4 bg-white rounded-xl shadow-2xl z-30
+                    transition-all duration-500 ease-out 
+                    w-55 md:w-70
                     
-                    ${/* LOGIKA POSISI KARTU */ ""}
+                    ${getHorizontalClass()}
+
+                    ${/* Reset Line-Clamp & Height */ ""}
+                    h-auto min-h-0 flex flex-col
+                    
                     ${isTooHigh
-                        ? 'top-full mt-4 origin-top'     // Jika tinggi: Muncul di bawah (top-full), margin-top
-                        : 'bottom-full mb-4 origin-bottom' // Jika rendah: Muncul di atas (bottom-full), margin-bottom
+                        ? 'top-full mt-4 origin-top'
+                        : 'bottom-full mb-4 origin-bottom'
                     }
 
-                    ${/* LOGIKA ANIMASI MASUK */ ""}
                     ${isHovered
                         ? 'opacity-100 scale-100 translate-y-0'
                         : `opacity-0 scale-90 pointer-events-none ${isTooHigh ? '-translate-y-4' : 'translate-y-4'}`
                     }
                 `}>
-
-                    <div className="w-full aspect-20/9 relative mb-4 overflow-hidden rounded-md bg-gray-100">
+                    {/* Image */}
+                    <div className="w-full aspect-21/9 relative mb-3 overflow-hidden rounded-lg bg-gray-100 shrink-0">
                         <Image
                             src={data.image}
                             alt={data.label}
                             fill
-                            sizes="(max-width: 768px) 100vw, 256px"
                             className="object-cover sepia-[0.3]"
                         />
                     </div>
 
-                    {/* Konten Teks */}
-                    <div className="text-left">
-                        <h3 className="font-serif text-lg font-bold text-gray-800 mb-1 leading-tight">
+                    <div className="text-left grow">
+                        <h3 className="font-serif text-sm md:text-base font-bold mb-1 leading-tight text-gray-900">
                             {data.label}
                         </h3>
-                        <div className="h-0.5 w-10 bg-yellow-500 mb-2"></div>
-                        <p className="font-sans text-xs text-gray-500 leading-relaxed">
-                            {data.desc}
-                        </p>
-                    </div>
+                        <div className="h-0.5 w-8 bg-yellow-600 mb-2"></div>
 
-                    <div className={`
-                        absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 transform
-                        ${isTooHigh
-                            ? '-top-2'
-                            : '-bottom-2'
-                        }
-                    `} />
+                        <div className="block h-auto overflow-visible">
+                            <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed whitespace-normal wrap-break-word">
+                                {data.desc}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Html>
