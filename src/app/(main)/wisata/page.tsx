@@ -5,8 +5,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SearchFilter from "@/components/shared/search-filter";
-import WisataCard from "@/components/shared/wisata-card";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import PaginationComponent from "@/components/shared/pagination";
+import ImageCard from "@/components/shared/image-card";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,36 +43,6 @@ export default function WisataPage() {
     const totalPages = Math.ceil(ALL_DATA.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const currentData = ALL_DATA.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-    // --- LOGIC PAGINATION UI GENERATOR (Untuk membuat "1 2 3 ... 24 25") ---
-    const getPageNumbers = () => {
-        const delta = 2; // Berapa banyak angka di kiri/kanan current page
-        const range = [];
-        const rangeWithDots = [];
-        let l;
-
-        range.push(1);
-        for (let i = currentPage - delta; i <= currentPage + delta; i++) {
-            if (i < totalPages && i > 1) {
-                range.push(i);
-            }
-        }
-        range.push(totalPages);
-
-        for (const i of range) {
-            if (l) {
-                if (i - l === 2) {
-                    rangeWithDots.push(l + 1);
-                } else if (i - l !== 1) {
-                    rangeWithDots.push("...");
-                }
-            }
-            rangeWithDots.push(i);
-            l = i;
-        }
-
-        return rangeWithDots;
-    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -209,7 +179,7 @@ export default function WisataPage() {
                 </div>
 
                 {/* CONTENT */}
-                <section className="w-full py-20 px-6 md:px-12 lg:px-16 container mx-auto min-h-screen">
+                <section id="content" className="w-full py-20 px-6 md:px-12 lg:px-16 container mx-auto min-h-screen">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
                         <div className="max-w-md">
                             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -221,77 +191,20 @@ export default function WisataPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                         {currentData.map((item) => (
-                            <WisataCard
+                            <ImageCard
                                 key={item.id}
                                 title={item.title}
                                 image={item.image}
+                                link="/wisata/detail"
                             />
                         ))}
                     </div>
 
-                    <Pagination>
-                        <PaginationContent className="gap-4">
-
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    href="#"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        if (currentPage > 1) setCurrentPage((p: number) => p - 1);
-                                    }}
-                                    className={`
-                    h-10 w-10 p-0 rounded-none flex items-center justify-center 
-                    bg-[#333] text-white hover:bg-black hover:text-white transition-colors
-                    ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}
-                `}
-                                />
-                            </PaginationItem>
-
-                            {/* Loop Nomor Halaman */}
-                            {getPageNumbers().map((page, index) => (
-                                <PaginationItem key={index}>
-                                    {page === "..." ? (
-                                        <PaginationEllipsis className="text-stone-400" />
-                                    ) : (
-                                        <PaginationLink
-                                            href="#"
-                                            isActive={currentPage === page}
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setCurrentPage(Number(page));
-                                            }}
-                                            className={`
-                        rounded-none border-none shadow-none hover:bg-transparent text-sm
-                        ${currentPage === page
-                                                    ? "font-bold text-[#333] scale-110"
-                                                    : "font-medium text-stone-400 hover:text-[#333]"
-                                                }
-                    `}
-                                        >
-                                            {page}
-                                        </PaginationLink>
-                                    )}
-                                </PaginationItem>
-                            ))}
-
-                            <PaginationItem>
-                                <PaginationNext
-                                    href="#"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        if (currentPage < totalPages) setCurrentPage((p: number) => p + 1);
-                                    }}
-                                    className={`
-                    h-10 w-10 p-0 rounded-none flex items-center justify-center 
-                    bg-[#333] text-white hover:bg-black hover:text-white transition-colors
-                    ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}
-                `}
-                                />
-                            </PaginationItem>
-
-                        </PaginationContent>
-                    </Pagination>
-
+                    <PaginationComponent
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
                 </section>
             </main>
         </div>

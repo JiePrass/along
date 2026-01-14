@@ -7,7 +7,7 @@ interface WisataCardProps {
     link?: string;
 }
 
-export default function WisataCard({ title, image, link = "#" }: WisataCardProps) {
+export default function ImageCard({ title, image, link = "#" }: WisataCardProps) {
     return (
         <div className="group relative w-full aspect-3/4 overflow-hidden rounded-sm shadow-sm cursor-pointer">
             {/* Background Image */}
