@@ -25,8 +25,11 @@ const bethany = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Along",
-  description: "Website Pariwisata",
+  title: "Along | Jelajahi Indonesia",
+  description: "Website Pariwisata Menjelajahi Keindahan Indonesia",
+  icons: {
+    icon: "/icons/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -35,9 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id" suppressHydrationWarning>
       <body
-        className={`${sfPro.variable} ${bethany.variable} antialiased bg-[#DDDDD1] text-[#2D1C04]`}
+        className={`${sfPro.variable} ${bethany.variable} font-sfpro antialiased bg-[#DDDDD1] text-[#2D1C04]`}
+        suppressHydrationWarning
       >
         {children}
       </body>

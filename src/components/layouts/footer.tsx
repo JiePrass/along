@@ -6,7 +6,6 @@ import { MainLogo } from "../logos/main-logo";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {
-    const currentYear = new Date().getFullYear();
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,7 +26,7 @@ export default function Footer() {
                     </h1>
 
                     <p className="text-xs mt-12 text-white hidden md:flex">
-                        &copy; {currentYear} Along - Semua hak cipta dilindungi.
+                        &copy; 2026 Along - Semua hak cipta dilindungi.
                     </p>
                 </div>
 
@@ -89,7 +88,7 @@ export default function Footer() {
             </div>
 
             <p className="text-xs text-center text-subtle md:hidden mt-4">
-                &copy; {currentYear} Along - Semua hak cipta dilindungi.
+                &copy; 2026 Along - Semua hak cipta dilindungi.
             </p>
         </footer>
     );
