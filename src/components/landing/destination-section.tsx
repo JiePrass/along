@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/immutability */
 "use client";
-import { useRef, useState, useEffect, useCallback } from 'react';
-import { gsap } from 'gsap';
+import { useRef, useState, useCallback } from 'react';
+import gsap from 'gsap';
 import { Observer } from 'gsap/Observer';
+import { useGSAP } from '@gsap/react'; // Import hook
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import DestinationCard from '../shared/destination-card';
 
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(Observer);
-}
+gsap.registerPlugin(Observer, useGSAP);
 
 const initialDestinations = [
     {
@@ -38,13 +38,45 @@ export default function DestinationSection() {
         const firstCard = sliderRef.current.firstElementChild as HTMLElement;
         const style = window.getComputedStyle(sliderRef.current);
         const gap = parseInt(style.gap) || 40;
-        return firstCard.offsetWidth + gap;
+        return (firstCard?.offsetWidth || 400) + gap;
     };
 
-    const slide = useCallback((direction: 'next' | 'prev') => {
+    const stopAutoPlay = useCallback(() => {
+        if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    }, []);
+
+    const { contextSafe } = useGSAP(() => {
+        gsap.set(sliderRef.current, { x: -(currentIndex * getMoveDistance()) });
+
+        const observer = Observer.create({
+            target: containerRef.current,
+            type: "touch,pointer",
+            onLeft: () => slide('next'),
+            onRight: () => slide('prev'),
+            tolerance: 50,
+            preventDefault: false
+        });
+
+        const handleResize = () => {
+            gsap.set(sliderRef.current, { x: -(currentIndex * getMoveDistance()) });
+        };
+        window.addEventListener('resize', handleResize);
+
+        startAutoPlay();
+
+        return () => {
+            observer.kill();
+            stopAutoPlay();
+            window.removeEventListener('resize', handleResize);
+        };
+    }, { dependencies: [currentIndex], scope: containerRef });
+
+    const slide = contextSafe((direction: 'next' | 'prev') => {
         if (!sliderRef.current || isAnimating.current) return;
 
         isAnimating.current = true;
+        stopAutoPlay(); // Stop sementara saat user interaksi
+
         const moveDistance = getMoveDistance();
         const nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
 
@@ -54,6 +86,8 @@ export default function DestinationSection() {
             ease: "power3.inOut",
             onComplete: () => {
                 let finalIndex = nextIndex;
+
+                // Logika Infinite Loop
                 if (nextIndex >= initialDestinations.length * 2) {
                     finalIndex = nextIndex - initialDestinations.length;
                     gsap.set(sliderRef.current, { x: -(finalIndex * moveDistance) });
@@ -61,58 +95,20 @@ export default function DestinationSection() {
                     finalIndex = nextIndex + initialDestinations.length;
                     gsap.set(sliderRef.current, { x: -(finalIndex * moveDistance) });
                 }
+
                 setCurrentIndex(finalIndex);
                 isAnimating.current = false;
+                startAutoPlay(); // Jalankan kembali autoplay
             }
         });
-    }, [currentIndex]);
+    });
 
-
-    const stopAutoPlay = useCallback(() => {
-        if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    }, []);
-
-    // Setup Auto-play
     const startAutoPlay = useCallback(() => {
         stopAutoPlay();
         autoPlayRef.current = setInterval(() => {
             slide('next');
         }, 5000);
     }, [slide, stopAutoPlay]);
-
-    useEffect(() => {
-        if (sliderRef.current) {
-            gsap.set(sliderRef.current, { x: -(currentIndex * getMoveDistance()) });
-        }
-
-        const observer = Observer.create({
-            target: containerRef.current,
-            type: "touch,pointer",
-            onLeft: () => {
-                slide('next');
-                startAutoPlay();
-            },
-            onRight: () => {
-                slide('prev');
-                startAutoPlay();
-            },
-            tolerance: 50,
-            preventDefault: false
-        });
-
-        startAutoPlay();
-
-        const handleResize = () => {
-            gsap.set(sliderRef.current, { x: -(currentIndex * getMoveDistance()) });
-        };
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            observer.kill();
-            stopAutoPlay();
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [currentIndex, slide, startAutoPlay, stopAutoPlay]);
 
     return (
         <section
@@ -131,7 +127,7 @@ export default function DestinationSection() {
                     </div>
 
                     <div className="hidden md:flex gap-4">
-                        <NavButtons slide={slide} resetTimer={startAutoPlay} />
+                        <NavButtons slide={slide} />
                     </div>
                 </div>
 
@@ -153,23 +149,23 @@ export default function DestinationSection() {
                 </div>
 
                 <div className="flex justify-center mt-10 md:hidden">
-                    <NavButtons slide={slide} resetTimer={startAutoPlay} />
+                    <NavButtons slide={slide} />
                 </div>
             </div>
         </section>
     );
 };
 
-const NavButtons = ({ slide, resetTimer }: { slide: (d: 'next' | 'prev') => void, resetTimer: () => void }) => (
+const NavButtons = ({ slide }: { slide: (d: 'next' | 'prev') => void }) => (
     <div className="flex gap-4">
         <button
-            onClick={() => { slide('prev'); resetTimer(); }}
+            onClick={() => slide('prev')}
             className="p-4 rounded-full text-white bg-[#2d1c04] active:scale-90 transition-transform cursor-pointer"
         >
             <ChevronLeft size={24} />
         </button>
         <button
-            onClick={() => { slide('next'); resetTimer(); }}
+            onClick={() => slide('next')}
             className="p-4 rounded-full text-white bg-[#2d1c04] active:scale-90 transition-transform cursor-pointer"
         >
             <ChevronRight size={24} />

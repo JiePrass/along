@@ -12,7 +12,6 @@ export default function KulinerSection() {
             <div className="absolute inset-0 z-30 pointer-events-none">
                 <Canvas
                     shadows
-                    // Kecilkan FOV sedikit untuk mobile agar objek tidak terpotong
                     camera={{ position: [0, 0, 8], fov: 40 }}
                     className="pointer-events-auto"
                 >
@@ -20,7 +19,6 @@ export default function KulinerSection() {
                     <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
                     <Environment preset="city" />
 
-                    {/* Scale default dihapus karena akan dihandle di dalam ModelSoto */}
                     <ModelSoto />
                 </Canvas>
             </div>

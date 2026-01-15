@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Group } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { SotoTooltip } from "../shared/soto-tooltip";
 
 if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, useGSAP);
 }
 
 const TOOLTIPS = [
@@ -42,6 +43,7 @@ export function ModelSoto(props: any) {
     const [showTooltips, setShowTooltips] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    // Deteksi mobile tetap menggunakan useEffect biasa
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
@@ -49,75 +51,93 @@ export function ModelSoto(props: any) {
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
-    useLayoutEffect(() => {
+    // Migrasi ke useGSAP
+    useGSAP(() => {
         if (!groupRef.current) return;
         const group = groupRef.current;
 
-        const ctx = gsap.context(() => {
-            const config = {
-                scale: isMobile ? 1.2 : 2.5,
-                fase1X: isMobile ? 0 : -2.5,
-                fase2Y: isMobile ? -0.5 : -1,
-                fase2Z: isMobile ? 3 : 2,
-            };
+        const config = {
+            scale: isMobile ? 1.2 : 2.5,
+            fase1X: isMobile ? 0 : -2.5,
+            fase2Y: isMobile ? -0.5 : -1,
+            fase2Z: isMobile ? 3 : 2,
+        };
 
-            gsap.set(group.scale, { x: config.scale, y: config.scale, z: config.scale });
-            gsap.set(group.position, { x: -9, y: 0, z: 0 });
-            gsap.set(group.rotation, { x: Math.PI / 2, y: 0, z: 0 });
+        // Inisialisasi awal tetap sama
+        gsap.set(group.scale, { x: config.scale, y: config.scale, z: config.scale });
+        gsap.set(group.position, { x: -9, y: 0, z: 0 });
+        gsap.set(group.rotation, { x: Math.PI / 2, y: 0, z: 0 });
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#kuliner-section",
-                    start: "top top",
-                    end: "+=300%",
-                    pin: true,
-                    scrub: 1,
-                    onUpdate: (self) => {
-                        setShowTooltips(self.progress > 0.85);
-                    }
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#kuliner-section",
+                start: "top top",
+                end: "+=300%",
+                pin: true,
+                scrub: 1,
+                onUpdate: (self) => {
+                    // Pastikan state diupdate sesuai progress scroll
+                    setShowTooltips(self.progress > 0.85);
                 }
-            });
-
-            tl.to(group.position, {
-                x: config.fase1X,
-                ease: "power1.out",
-                duration: 2.5
-            }, "masuk")
-                .to(group.rotation, {
-                    z: 0,
-                    y: -Math.PI * 2,
-                    ease: "power1.out",
-                    duration: 2.5
-                }, "masuk");
-
-            tl.to({}, { duration: 0.5 });
-
-            if (document.querySelector("#section-2")) {
-                tl.to("#section-2", {
-                    yPercent: -100,
-                    ease: "power2.inOut",
-                    duration: 3
-                }, "pindah");
             }
-
-            tl.to(group.position, {
-                x: 0,
-                y: config.fase2Y,
-                z: config.fase2Z,
-                ease: "power2.inOut",
-                duration: 3
-            }, "pindah")
-                .to(group.rotation, {
-                    x: 0.5,
-                    y: -Math.PI * 4,
-                    z: 0.15,
-                    ease: "power2.inOut",
-                    duration: 3
-                }, "pindah");
         });
 
-        return () => ctx.revert();
-    }, [isMobile]);
+        // Fase 1: Masuk
+        tl.to(group.position, {
+            x: config.fase1X,
+            ease: "power1.out",
+            duration: 2
+        }, "masuk")
+            .to(group.rotation, {
+                z: 0,
+                y: -Math.PI * 2,
+                ease: "power1.out",
+                duration: 2
+            }, "masuk");
+
+        tl.to({}, { duration: 0.5 });
+
+        if (document.querySelector("#section-2")) {
+            tl.to("#section-2", {
+                yPercent: -100,
+                ease: "power2.inOut",
+                duration: 3
+            }, "pindah");
+        }
+
+        tl.to(group.position, {
+            x: 0,
+            y: config.fase2Y,
+            z: config.fase2Z,
+            ease: "power2.inOut",
+            duration: 3
+        }, "pindah")
+            .to(group.rotation, {
+                x: 0.5,
+                y: -Math.PI * 4,
+                z: 0.15,
+                ease: "power2.inOut",
+                duration: 3
+            }, "pindah");
+
+        const section2 = document.querySelector("#section-2");
+        if (section2) {
+            tl.to(section2, {
+                yPercent: -100,
+                ease: "power2.inOut",
+                duration: 3
+            }, "pindah");
+        }
+
+        tl.to(group.position, {
+            x: 0,
+            y: config.fase2Y,
+            z: config.fase2Z,
+            ease: "power2.inOut",
+            duration: 3
+        }, "pindah");
+
+    }, { dependencies: [isMobile] });
 
     return (
         <group ref={groupRef} {...props}>
