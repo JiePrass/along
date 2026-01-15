@@ -30,9 +30,9 @@ export default function KulinerPage() {
 
     return (
         <div className="relative w-full overflow-x-hidden">
-            <div className="relative flex flex-col md:flex-row min-h-[90vh] lg:min-h-screen">
+            <div className="relative flex flex-col md:flex-row lg:min-h-screen">
                 <div className="container mx-auto px-6 md:px-12 lg:px-16 flex items-center z-10">
-                    <div className="w-full md:w-1/2 py-20">
+                    <div className="w-full md:w-1/2 pt-20 md:py-20">
                         <div className="flex flex-col">
                             <h1 className="text-4xl md:text-5xl font-extralight font-bethany leading-[1.2] mb-2">
                                 Jelajahi Berbagai Rasa Di Bumi Pertiwi
@@ -49,12 +49,13 @@ export default function KulinerPage() {
                     </div>
                 </div>
 
-                <div className="absolute top-0 right-0 w-full md:w-[55vw] h-[50vh] md:h-full z-0">
+                <div className="relative md:absolute top-0 right-0 w-full md:w-[55vw] md:h-full z-0">
                     <Canvas
                         shadows
                         camera={{ position: [0, 10, 0], fov: 35 }}
                         className="w-full h-full"
                     >
+                        {/* ... konten 3D ... */}
                         <ambientLight intensity={0.7} />
                         <directionalLight position={[10, 10, 5]} intensity={2} castShadow />
                         <Environment preset="city" />

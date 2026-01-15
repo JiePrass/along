@@ -69,8 +69,8 @@ export default function Header() {
             <header
                 className={`fixed top-0 left-0 w-full z-100 transition-all duration-500 transform
                 ${isVisible ? 'translate-y-0' : '-translate-y-full'}
-                ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}
-                ${menuOpen ? 'bg-white shadow-none' : ''}`}
+                ${isScrolled ? 'bg-transparent backdrop-blur-xs' : ''}
+                ${menuOpen ? 'bg-white' : ''}`}
             >
                 <div className="container mx-auto px-6 md:px-12 lg:px-16 h-16 md:h-20 flex items-center justify-between">
                     <div className="flex-1">
@@ -112,7 +112,7 @@ export default function Header() {
                         ))}
                     </ul>
 
-                    <div className="w-125 h-87.5 relative rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
+                    <div className="w-full mb-8 md:mb-0 h-64 lg:w-125 lg:h-87.5 relative rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
                         <Image
                             src={DEFAULT_IMAGE}
                             alt="Default View"

@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import SearchFilter from "@/components/shared/search-filter";
 import PaginationComponent from "@/components/shared/pagination";
 import ImageCard from "@/components/shared/image-card";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const IMAGES = [
     "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=500",
@@ -39,94 +40,89 @@ export default function WisataPage() {
     const containerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    // --- LOGIC PAGINATION DATA ---
+    // Pagination Logic
     const totalPages = Math.ceil(ALL_DATA.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const currentData = ALL_DATA.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const cards = cardsRef.current.filter((el) => el !== null);
+    useGSAP(() => {
+        const cards = cardsRef.current.filter((el) => el !== null);
 
-            const cardWidth = 240;
-            const speed = 20;
-            const spacing = cardWidth + speed;
-            const totalWidth = spacing * cards.length;
-            const centerIndex = (cards.length - 1) / 2;
+        const cardWidth = 240;
+        const speed = 20;
+        const spacing = cardWidth + speed;
+        const totalWidth = spacing * cards.length;
+        const centerIndex = (cards.length - 1) / 2;
 
-            const proxy = { value: spacing * centerIndex };
+        const proxy = { value: spacing * centerIndex };
 
-            // Semakin BESAR radius, semakin landai/datar lengkungannya.
-            // Semakin KECIL radius, semakin ekstrem melengkungnya.
-            const radius = 1200;
+        // Semakin besar radius, semakin datar lengkungannya
+        // Semakin kecil, semakin melengkung
+        const radius = 1200;
 
-            // Max Arc Angle: Seberapa lebar sudut penyebaran kartu dari tengah.
-            const maxArcAngle = 65;
+        // Seberapa lebar sudut penyebaran kartu dari tengah
+        const maxArcAngle = 65;
 
+        const updateCards = () => {
+            cards.forEach((card, i) => {
+                const rawPosition = (i * spacing) - proxy.value;
 
-            const updateCards = () => {
-                cards.forEach((card, i) => {
-                    const rawPosition = (i * spacing) - proxy.value;
+                const linearXPos = gsap.utils.wrap(
+                    -totalWidth / 2,
+                    totalWidth / 2,
+                    rawPosition
+                );
 
-                    const linearXPos = gsap.utils.wrap(
-                        -totalWidth / 2,
-                        totalWidth / 2,
-                        rawPosition
-                    );
+                const progress = linearXPos / (totalWidth / 2);
+                const currentAngleDeg = progress * maxArcAngle;
+                const currentAngleRad = currentAngleDeg * (Math.PI / 180);
+                const posX = radius * Math.sin(currentAngleRad);
+                const posZ = (radius * Math.cos(currentAngleRad)) - radius;
+                const rotateY = -currentAngleDeg * 1.1;
+                const distFromCenterAbs = Math.abs(progress);
+                const scale = gsap.utils.interpolate(1.1, 0.8, distFromCenterAbs);
+                const opacity = gsap.utils.interpolate(1, 0.5, distFromCenterAbs);
+                const zIndex = cards.length - Math.floor(distFromCenterAbs * cards.length);
 
-                    const progress = linearXPos / (totalWidth / 2);
-                    const currentAngleDeg = progress * maxArcAngle;
-                    const currentAngleRad = currentAngleDeg * (Math.PI / 180);
-                    const posX = radius * Math.sin(currentAngleRad);
-                    const posZ = (radius * Math.cos(currentAngleRad)) - radius;
-                    const rotateY = -currentAngleDeg * 1.1;
-                    const distFromCenterAbs = Math.abs(progress);
-                    const scale = gsap.utils.interpolate(1.1, 0.8, distFromCenterAbs);
-                    const opacity = gsap.utils.interpolate(1, 0.5, distFromCenterAbs);
-                    const zIndex = cards.length - Math.floor(distFromCenterAbs * cards.length);
-
-                    gsap.set(card, {
-                        x: posX,
-                        y: 0,
-                        z: posZ,
-                        scale: scale,
-                        opacity: opacity,
-                        rotateY: -rotateY,
-                        zIndex: zIndex,
-                        transformOrigin: "center center",
-                        filter: `brightness(${gsap.utils.interpolate(1, 0.7, distFromCenterAbs)})`
-                    });
+                gsap.set(card, {
+                    x: posX,
+                    y: 0,
+                    z: posZ,
+                    scale: scale,
+                    opacity: opacity,
+                    rotateY: -rotateY,
+                    zIndex: zIndex,
+                    transformOrigin: "center center",
+                    filter: `brightness(${gsap.utils.interpolate(1, 0.7, distFromCenterAbs)})`
                 });
-            };
-
-            const nextSlide = () => {
-                gsap.to(proxy, {
-                    value: proxy.value + spacing,
-                    duration: 1.5,
-                    ease: "power4.inOut",
-                    onUpdate: updateCards,
-                    onComplete: () => {
-                        gsap.delayedCall(2, nextSlide); // Delay sebelum slide berikutnya
-                    }
-                });
-            };
-
-            updateCards();
-            gsap.delayedCall(1, nextSlide);
-
-            gsap.from(cards, {
-                y: 500,
-                opacity: 0,
-                duration: 1.5,
-                stagger: 0.05,
-                ease: "power3.out",
-                onUpdate: updateCards
             });
+        };
 
-        }, containerRef);
+        const nextSlide = () => {
+            gsap.to(proxy, {
+                value: proxy.value + spacing,
+                duration: 1.5,
+                ease: "power4.inOut",
+                onUpdate: updateCards,
+                onComplete: () => {
+                    gsap.delayedCall(2, nextSlide); // Delay sebelum pindah slide berikutnya
+                }
+            });
+        };
 
-        return () => ctx.revert();
-    }, []);
+        updateCards();
+        gsap.delayedCall(1, nextSlide);
+
+        gsap.from(cards, {
+            y: 500,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.05,
+            ease: "power3.out",
+            onUpdate: updateCards
+        });
+
+    }, { scope: containerRef });
 
     return (
         <div
