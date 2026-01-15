@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import PageTransitionProvider from "@/components/page-transition";
 
 const sfPro = localFont({
   src: [
@@ -43,7 +44,9 @@ export default function RootLayout({
         className={`${sfPro.variable} ${bethany.variable} font-sfpro antialiased bg-[#DDDDD1] text-[#2D1C04]`}
         suppressHydrationWarning
       >
-        {children}
+        <PageTransitionProvider>
+          {children}
+        </PageTransitionProvider>
       </body>
     </html>
   );

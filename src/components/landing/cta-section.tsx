@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
+import TransitionLink from '../transition-link';
 
 export default function CTASection() {
     return (
@@ -37,23 +37,23 @@ export default function CTASection() {
 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                    <Link
+                    <TransitionLink
                         href="/wisata"
                         className="group flex items-center gap-2 border border-[#2D1C04] px-6 py-2 text-lg font-medium transition-all hover:bg-[#2D1C04] hover:text-white"
                     >
                         Jelajahi Sekarang
                         <ArrowUpRight size={20} />
-                    </Link>
+                    </TransitionLink>
 
-                    <Link
-                        href="/mission"
+                    <TransitionLink
+                        href="/kuliner"
                         className="text-lg font-medium hover:text-white"
                     >
                         Cari Kuliner
-                    </Link>
+                    </TransitionLink>
                 </div>
 
             </div>
-        </section>
+        </section >
     );
 }

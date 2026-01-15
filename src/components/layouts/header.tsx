@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
-import Link from 'next/link';
 import Image from 'next/image';
 import { LogoIcon } from "../logos/logo-only";
 import { MainLogo } from "../logos/main-logo";
+import TransitionLink from '../transition-link';
 
 const navItems = [
     { label: 'BERANDA', href: '/', src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80' },
@@ -98,7 +98,7 @@ export default function Header() {
                     <ul className="flex flex-col gap-4 w-full lg:w-1/2">
                         {navItems.map((item, index) => (
                             <li key={index}>
-                                <Link
+                                <TransitionLink
                                     href={item.href}
                                     onMouseEnter={() => setHoveredIndex(index)}
                                     onMouseLeave={() => setHoveredIndex(null)}
@@ -107,7 +107,7 @@ export default function Header() {
                                         ${hoveredIndex !== null && hoveredIndex !== index ? 'blur-sm opacity-50' : 'text-black opacity-100 scale-105'}`}
                                 >
                                     {item.label}
-                                </Link>
+                                </TransitionLink>
                             </li>
                         ))}
                     </ul>

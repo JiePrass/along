@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import TransitionLink from "../transition-link";
 
 interface WisataCardProps {
     title: string;
@@ -28,12 +28,12 @@ export default function ImageCard({ title, image, link = "#" }: WisataCardProps)
                     {title}
                 </h3>
 
-                <Link
+                <TransitionLink
                     href={link}
                     className="px-4 py-1.5 border border-white/70 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300 rounded-sm backdrop-blur-sm"
                 >
                     Jelajahi
-                </Link>
+                </TransitionLink>
             </div>
         </div>
     );

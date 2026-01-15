@@ -7,9 +7,9 @@ import Image from "next/image";
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { ModelKristal } from "@/components/3d/model-kristal";
 import { MainLogo } from "../logos/main-logo";
+import TransitionLink from "../transition-link";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -69,9 +69,9 @@ export default function AboutSection() {
                                 Along adalah platform pariwisata Indonesia yang memungkinkan pengguna untuk menjelajahi destinasi wisata terbaik
                             </div>
                             <div className="flex md:justify-end">
-                                <Link href="/wisata" className="pointer-events-auto z-55 border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
+                                <TransitionLink href="/wisata" className="pointer-events-auto z-55 border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
                                     Jelajahi Sekarang <ArrowUpRight size={20} />
-                                </Link>
+                                </TransitionLink>
                             </div>
                         </div>
                     </div>
@@ -118,9 +118,9 @@ export default function AboutSection() {
                         <div className="font-serif text-xl my-8 max-w-md font-medium leading-snug">
                             <span>Dengan Along, nikmati pengalaman wisata yang mudah, menyenangkan, dan penuh inspirasi.</span>
                         </div>
-                        <Link href="/wisata" className="pointer-events-auto border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
+                        <TransitionLink href="/wisata" className="pointer-events-auto border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
                             Jelajahi Sekarang <ArrowUpRight size={20} />
-                        </Link>
+                        </TransitionLink>
                     </div>
 
                     <div className="relative md:h-125 w-full hidden md:block">

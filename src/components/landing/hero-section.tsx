@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react"; // Import hook khusus React
 import Image from "next/image";
+import TransitionLink from "../transition-link";
 
 // Registrasi plugin
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -189,10 +190,10 @@ export default function HeroSection() {
                         </div>
 
                         <div className="flex justify-end pointer-events-auto">
-                            <button className="group border border-white px-6 py-3 text-white text-sm md:text-base uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-3">
+                            <TransitionLink href="/wisata" className="group border border-white px-6 py-3 text-white text-sm md:text-base uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-3">
                                 Jelajahi Sekarang
                                 <span className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 text-lg">↗</span>
-                            </button>
+                            </TransitionLink>
                         </div>
                     </div>
                 </div>
