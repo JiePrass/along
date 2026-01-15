@@ -9,6 +9,17 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'plus.unsplash.com',
+        port: '',
+        pathname: '/**',
+      }, {
+        protocol: 'https',
+        hostname: 'static.uc.ac.id',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
