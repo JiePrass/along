@@ -69,7 +69,7 @@ export default function Footer() {
 
             <div className="container mx-auto px-6 md:px-12 lg:px-16">
                 <div className="flex justify-center items-center">
-                    <h1 className="text-[133px] md:text-[333px] cursor-default my-8 leading-none font-extralight font-bethany text-center">
+                    <h1 className="text-[111px] md:text-[333px] cursor-default my-8 leading-none font-extralight font-bethany text-center">
                         ALONG
                     </h1>
                 </div>

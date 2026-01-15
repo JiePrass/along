@@ -94,7 +94,7 @@ export default function Header() {
                 className={`fixed top-0 left-0 w-full h-screen bg-white z-90 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]
                 ${menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}
             >
-                <div className="container mx-auto px-6 md:px-12 lg:px-16 pt-16 h-full flex flex-col lg:flex-row justify-between items-center gap-12">
+                <div className="container mx-auto px-6 md:px-12 lg:px-16 pt-16 h-full flex flex-col lg:flex-row lg:justify-between items-center gap-12">
                     <ul className="flex flex-col gap-4 w-full lg:w-1/2">
                         {navItems.map((item, index) => (
                             <li key={index}>
@@ -112,7 +112,7 @@ export default function Header() {
                         ))}
                     </ul>
 
-                    <div className="w-full mb-8 md:mb-0 h-64 lg:w-125 lg:h-87.5 relative rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
+                    <div className="w-full h-64 lg:w-125 lg:h-87.5 relative rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
                         <Image
                             src={DEFAULT_IMAGE}
                             alt="Default View"

@@ -29,9 +29,9 @@ const TOOLTIPS = [
         mobilePosition: [0.4, 0.1, 0.4] as [number, number, number]
     },
     {
-        label: 'Detail Rempah',
-        desc: 'Bumbu soto pada umumnya terdiri dari campuran rempah-rempah yang dihaluskan dan bumbu aromatik, meskipun ada sedikit perbedaan tergantung jenis sotonya (ayam, daging, bening, atau santan).',
-        image: '/images/rempah.png',
+        label: 'Ragam Soto Nusantara',
+        desc: 'Indonesia memiliki lebih dari 75 varian soto yang tersebar dari Sabang sampai Merauke, mulai dari Soto Medan yang bersantan kental hingga Soto Banjar yang aromatik dengan campuran susu dan rempah kayu manis.',
+        image: '/images/ragam-soto.jpg',
         position: [0, 0.72, -0.5] as [number, number, number],
         mobilePosition: [0, 0.8, -0.2] as [number, number, number]
     },

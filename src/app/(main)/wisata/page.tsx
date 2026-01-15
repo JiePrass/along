@@ -27,7 +27,7 @@ const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
     id: i,
     title: i % 2 === 0 ? `Curug Cilember ${i + 1}` : `Taman Safari ${i + 1}`,
     image: i % 3 === 0
-        ? "https://images.unsplash.com/photo-1596401057633-565652b5e260?auto=format&fit=crop&q=80&w=600"
+        ? "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
         : i % 3 === 1
             ? "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=600"
             : "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600"
@@ -146,6 +146,9 @@ export default function WisataPage() {
                         perspective: "1200px",
                     }}
                 >
+                    <div className="absolute left-0 top-0 bottom-0 w-12 md:w-64 z-10 pointer-events-none bg-linear-to-r from-[#ddddd1] to-transparent" />
+                    <div className="absolute right-0 top-0 bottom-0 w-12 md:w-64 z-10 pointer-events-none bg-linear-to-l from-[#ddddd1] to-transparent" />
+                    <div className="absolute bottom-0 w-full h-32 md:h-64 z-10 pointer-events-none bg-linear-to-t from-[#ddddd1] to-transparent" />
                     <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: "preserve-3d" }}>
                         {IMAGES.map((src, index) => (
                             <div

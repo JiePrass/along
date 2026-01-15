@@ -14,7 +14,7 @@ const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
     id: i,
     title: i % 2 === 0 ? `Ayam Betutu ${i + 1}` : `Soto Betawi ${i + 1}`,
     image: i % 3 === 0
-        ? "https://images.unsplash.com/photo-1596401057633-565652b5e260?auto=format&fit=crop&q=80&w=600"
+        ? "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
         : i % 3 === 1
             ? "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=600"
             : "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600"
@@ -49,7 +49,7 @@ export default function KulinerPage() {
                     </div>
                 </div>
 
-                <div className="relative md:absolute top-0 right-0 w-full md:w-[55vw] md:h-full z-0">
+                <div className="relative md:absolute top-0 right-0 w-full md:w-[55vw] h-[50vh] md:h-full z-0">
                     <Canvas
                         shadows
                         camera={{ position: [0, 10, 0], fov: 35 }}
