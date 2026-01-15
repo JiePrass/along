@@ -8,7 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function KulinerSection() {
     return (
-        <section id="kuliner-section" className="relative w-full h-screen overflow-hidden">
+        <section id="kuliner-section" className="relative w-full h-dvh bg-red-500 overflow-hidden">
             <div className="absolute inset-0 z-30 pointer-events-none">
                 <Canvas
                     shadows
@@ -28,7 +28,6 @@ export default function KulinerSection() {
                     <div className="absolute inset-0 bg-[url('/images/kuliner-bg.png')] bg-cover bg-center" />
                 </div>
 
-                {/* Penyesuaian Text Mobile: Text center pada mobile, left pada desktop */}
                 <div className="w-full md:w-1/2 text-white pt-20 text-center md:text-left flex flex-col items-center md:items-start">
                     <h1 className="text-4xl md:text-6xl font-bethany leading-[1.2] mb-4">
                         Jelajahi Berbagai Rasa Di Bumi Pertiwi
@@ -43,9 +42,8 @@ export default function KulinerSection() {
                 </div>
             </div>
 
-            <div id="section-2" className="absolute inset-0 z-20 bg-[#ddddd1] flex items-center justify-center translate-y-full">
+            <div id="section-2" className="absolute inset-0 z-20 bg-[#ddddd1] flex items-center justify-center">
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                    {/* Ukuran Font Responsive */}
                     <h1 className="text-[10rem] sm:text-[12rem] md:text-[25rem] font-bethany font-extralight text-[#DCDCD9] opacity-60 leading-none mix-blend-multiply">
                         SOTO
                     </h1>

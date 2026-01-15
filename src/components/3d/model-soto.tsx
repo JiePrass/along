@@ -63,10 +63,10 @@ export function ModelSoto(props: any) {
             fase2Z: isMobile ? 3 : 2,
         };
 
-        // Inisialisasi awal tetap sama
         gsap.set(group.scale, { x: config.scale, y: config.scale, z: config.scale });
         gsap.set(group.position, { x: -9, y: 0, z: 0 });
         gsap.set(group.rotation, { x: Math.PI / 2, y: 0, z: 0 });
+        gsap.set("#section-2", { yPercent: 100 });
 
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -75,14 +75,13 @@ export function ModelSoto(props: any) {
                 end: "+=300%",
                 pin: true,
                 scrub: 1,
+                invalidateOnRefresh: true,
                 onUpdate: (self) => {
-                    // Pastikan state diupdate sesuai progress scroll
                     setShowTooltips(self.progress > 0.85);
                 }
             }
         });
 
-        // Fase 1: Masuk
         tl.to(group.position, {
             x: config.fase1X,
             ease: "power1.out",
@@ -97,14 +96,11 @@ export function ModelSoto(props: any) {
 
         tl.to({}, { duration: 0.5 });
 
-        if (document.querySelector("#section-2")) {
-            tl.to("#section-2", {
-                yPercent: -100,
-                ease: "power2.inOut",
-                duration: 3
-            }, "pindah");
-        }
-
+        tl.to("#section-2", {
+            yPercent: 0.1,
+            ease: "power2.inOut",
+            duration: 3
+        }, "pindah");
         tl.to(group.position, {
             x: 0,
             y: config.fase2Y,
@@ -120,24 +116,9 @@ export function ModelSoto(props: any) {
                 duration: 3
             }, "pindah");
 
-        const section2 = document.querySelector("#section-2");
-        if (section2) {
-            tl.to(section2, {
-                yPercent: -100,
-                ease: "power2.inOut",
-                duration: 3
-            }, "pindah");
-        }
+        ScrollTrigger.refresh();
 
-        tl.to(group.position, {
-            x: 0,
-            y: config.fase2Y,
-            z: config.fase2Z,
-            ease: "power2.inOut",
-            duration: 3
-        }, "pindah");
-
-    }, { dependencies: [isMobile] });
+    }, { dependencies: [isMobile], revertOnUpdate: true });
 
     return (
         <group ref={groupRef} {...props}>
