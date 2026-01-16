@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react"; // Import hook khusus React
 import Image from "next/image";
-import TransitionLink from "../transition-link";
+import TransitionLink from "../layouts/transition-link";
 
 // Registrasi plugin
 gsap.registerPlugin(ScrollTrigger, useGSAP);

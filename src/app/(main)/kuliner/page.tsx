@@ -1,7 +1,7 @@
 'use client';
 
 import { ModelSotoKuliner } from "@/components/3d/model-soto-kuliner-page";
-import ImageCard from "@/components/shared/image-card";
+import ImageCard from "@/components/shared/card/image-card";
 import PaginationComponent from "@/components/shared/pagination";
 import SearchFilter from "@/components/shared/search-filter";
 import { Environment } from "@react-three/drei";

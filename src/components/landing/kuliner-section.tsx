@@ -3,8 +3,8 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { ModelSoto } from "../3d/model-soto";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import TransitionLink from "../layouts/transition-link";
 
 export default function KulinerSection() {
     return (
@@ -35,10 +35,10 @@ export default function KulinerSection() {
                     <p className="text-sm md:text-lg leading-relaxed max-w-lg mb-8 font-light">
                         Jelajahi Berbagai Kuliner di Indonesia mulai dari sejarah, cara pembuatan, dan makna filosofinya.
                     </p>
-                    <Link href="/kuliner" className="flex items-center gap-2 border border-white px-6 py-2 text-lg font-medium hover:bg-white hover:text-black transition-all">
+                    <TransitionLink href="/kuliner" className="flex items-center gap-2 border border-white px-6 py-2 text-lg font-medium hover:bg-white hover:text-black transition-all">
                         Jelajahi Sekarang
                         <ArrowUpRight size={20} />
-                    </Link>
+                    </TransitionLink>
                 </div>
             </div>
 

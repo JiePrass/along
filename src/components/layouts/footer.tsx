@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
-import { MainLogo } from "../logos/main-logo";
+import { MainLogo } from "../icons/main-logo";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {

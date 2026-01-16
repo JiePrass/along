@@ -5,15 +5,15 @@ import { usePathname } from 'next/navigation';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import Image from 'next/image';
-import { LogoIcon } from "../logos/logo-only";
-import { MainLogo } from "../logos/main-logo";
-import TransitionLink from '../transition-link';
+import { LogoIcon } from "../icons/logo-only";
+import { MainLogo } from "../icons/main-logo";
+import TransitionLink from './transition-link';
 
 const navItems = [
     { label: 'BERANDA', href: '/', src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80' },
     { label: 'WISATA', href: '/wisata', src: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80' },
     { label: 'KULINER', href: '/kuliner', src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80' },
-    { label: 'GALERI', href: '/galeri', src: 'https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&w=800&q=80' },
+    { label: 'ARTIKEL', href: '/article', src: 'https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&w=800&q=80' },
 ];
 
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80";

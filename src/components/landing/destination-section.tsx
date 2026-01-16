@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { Observer } from 'gsap/Observer';
 import { useGSAP } from '@gsap/react'; // Import hook
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import DestinationCard from '../shared/destination-card';
+import DestinationCard from '../shared/card/destination-card';
 
 gsap.registerPlugin(Observer, useGSAP);
 

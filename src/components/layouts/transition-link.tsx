@@ -26,7 +26,7 @@ const TransitionLink = forwardRef<HTMLAnchorElement, Props>(
                 ref={ref}
                 href={href}
                 onClick={handleClick}
-                className={`cursor-pointer inline-block ${className || ""}`}
+                className={`cursor-pointer flex ${className || ""}`}
                 {...props}
             >
                 {children}

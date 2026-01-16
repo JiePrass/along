@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TransitionLink from "../transition-link";
+import TransitionLink from "../../layouts/transition-link";
 
 interface WisataCardProps {
     title: string;

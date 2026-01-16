@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SearchFilter from "@/components/shared/search-filter";
 import PaginationComponent from "@/components/shared/pagination";
-import ImageCard from "@/components/shared/image-card";
+import ImageCard from "@/components/shared/card/image-card";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 

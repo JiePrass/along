@@ -8,8 +8,8 @@ import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { ArrowUpRight } from "lucide-react";
 import { ModelKristal } from "@/components/3d/model-kristal";
-import { MainLogo } from "../logos/main-logo";
-import TransitionLink from "../transition-link";
+import { MainLogo } from "../icons/main-logo";
+import TransitionLink from "../layouts/transition-link";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 

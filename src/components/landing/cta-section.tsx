@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import TransitionLink from '../transition-link';
+import TransitionLink from '../layouts/transition-link';
 
 export default function CTASection() {
     return (
