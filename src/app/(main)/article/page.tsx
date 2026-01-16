@@ -3,6 +3,9 @@
 import ArticleCard from "@/components/shared/card/article-card";
 import PaginationComponent from "@/components/shared/pagination";
 import SearchFilter from "@/components/shared/search-filter";
+import Image from "next/image"
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
@@ -28,9 +31,34 @@ export default function KulinerPage() {
 
     return (
         <div className="relative w-full overflow-x-hidden flex flex-col">
-            <div className="relative flex bg-white flex-col md:flex-row lg:min-h-screen">
+            <section className="w-full flex items-center overflow-hidden pt-24 md:py-0">
+                <div className="container mx-auto px-6 md:px-12">
+                    <div className="flex flex-col md:flex-row items-center">
+                        {/* --- LEFT SIDE: TEXT CONTENT --- */}
+                        <div className="w-full md:w-1/2 flex flex-col justify-center z-10">
+                            <h1 className="text-4xl md:text-6xl font-bethany leading-[1.1] mb-4">
+                                Menyelami Setiap Sudut Cerita Nusantara 🇮🇩
+                            </h1>
 
-            </div>
+                            <p className="text-[#4A4A3A] text-sm md:text-lg leading-relaxed max-w-lg font-light tracking-wide">
+                                Sebuah kurasi kisah dari ribuan pulau. Temukan inspirasi perjalanan melalui warisan budaya yang adiluhung, surga alam yang tersembunyi, hingga cita rasa kuliner yang menghangatkan jiwa.
+                            </p>
+                        </div>
+
+                        {/* --- RIGHT SIDE: POLAROID STACK IMAGES --- */}
+                        <div className="w-full md:w-1/2 relative h-100 md:h-150 flex justify-center items-center">
+                            <div className="relative w-full h-full overflow-hidden">
+                                <Image
+                                    src="/images/hero-article.png"
+                                    alt="Polaroid"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section id="content" className="container mx-auto px-6 md:px-12 lg:px-16 py-20">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
