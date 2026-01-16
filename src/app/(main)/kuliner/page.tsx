@@ -6,19 +6,50 @@ import PaginationComponent from "@/components/shared/pagination";
 import SearchFilter from "@/components/shared/search-filter";
 import { Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 
-const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
-    id: i,
-    title: i % 2 === 0 ? `Ayam Betutu ${i + 1}` : `Soto Betawi ${i + 1}`,
-    image: i % 3 === 0
-        ? "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
-        : i % 3 === 1
-            ? "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=600"
-            : "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600"
-}));
+const ALL_DATA = [
+    {
+        id: 1,
+        title: "Ayam Betutu, Bali",
+        image: "https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hpY2tlbiUyMGZvb2R8ZW58MHx8MHx8fDA%3D",
+    },
+    {
+        id: 2,
+        title: "Soto Betawi, Jakarta",
+        image: "https://images.unsplash.com/photo-1572656631137-7935297eff55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c290b3xlbnwwfHwwfHx8MA%3D%3D",
+    },
+    {
+        id: 3,
+        title: "Rendang Daging, Padang",
+        image: "https://images.unsplash.com/photo-1620700668269-d3ad2a88f27e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVuZGFuZ3xlbnwwfHwwfHx8MA%3D%3D",
+    },
+    {
+        id: 4,
+        title: "Sate Ayam Madura",
+        image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+        id: 5,
+        title: "Nasi Goreng Spesial",
+        image: "https://images.unsplash.com/photo-1680674774705-90b4904b3a7f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmFzaSUyMGdvcmVuZ3xlbnwwfHwwfHx8MA%3D%3D",
+    },
+    {
+        id: 6,
+        title: "Gado-Gado, Jawa Tengah",
+        image: "https://images.unsplash.com/photo-1707269561481-a4a0370a980a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FkbyUyMGdhZG98ZW58MHx8MHx8fDA%3D",
+    },
+    {
+        id: 7,
+        title: "Bakso Sapi Wonogiri",
+        image: "https://images.unsplash.com/photo-1687425973269-af0d62587769?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFrc298ZW58MHx8MHx8fDA%3D",
+    },
+    {
+        id: 8,
+        title: "Gudeg, Yogyakarta",
+        image: "https://images.unsplash.com/photo-1707528904076-6dbefcfe9b4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3VkZWd8ZW58MHx8MHx8fDA%3D",
+    },
+];
 
 const ITEMS_PER_PAGE = 8;
 

@@ -6,18 +6,71 @@ import SearchFilter from "@/components/shared/search-filter";
 import Image from "next/image"
 import { useState } from "react";
 
-const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
-    id: i,
-    title: i % 2 === 0 ? `Pemkot Bogor ${i + 1}` : `Dinas Perhubungan ${i + 1}`,
-    image: i % 3 === 0
-        ? "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
-        : i % 3 === 1
-            ? "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=600"
-            : "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600",
-    date: `${Math.floor(Math.random() * 28) + 1} August 2023`,
-    description: i % 2 === 0 ? `Pemkot Bogor Terapkan Sistem Satu Arah Dan Rambu Elektronik Untuk Mengurai Kemacetan., ${i + 1}` :
-        `Dinas Perhubungan melakukan pemantauan intensif di titik-titik rawan kemacetan selama libur panjang. ${i + 1}`,
-}));
+const ALL_DATA = [
+    {
+        id: 1,
+        title: "Eksplorasi Keajaiban Bawah Laut Raja Ampat",
+        image: "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=800",
+        date: "12 January 2026",
+        description: "Raja Ampat menawarkan kekayaan biodiversitas laut tertinggi di dunia, menjadi surga bagi para penyelam mancanegara.",
+    },
+    {
+        id: 2,
+        title: "Pesona Matahari Terbit di Puncak Gunung Bromo",
+        image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800",
+        date: "15 February 2026",
+        description: "Menikmati fenomena 'sea of sand' dan kawah aktif Bromo saat fajar menyingsing adalah pengalaman tak terlupakan di Jawa Timur.",
+    },
+    {
+        id: 3,
+        title: "Wisata Budaya dan Sejarah di Candi Borobudur",
+        image: "https://plus.unsplash.com/premium_photo-1700955004555-900a9733ee14?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9yb2J1ZHVyfGVufDB8fDB8fHww",
+        date: "05 March 2026",
+        description: "Sebagai candi Buddha terbesar di dunia, Borobudur tetap menjadi destinasi religi dan sejarah paling ikonik di Indonesia.",
+    },
+    {
+        id: 4,
+        title: "Kemewahan Alam di Pulau Komodo dan Padar",
+        image: "https://plus.unsplash.com/premium_photo-1664297926110-7cf2385f8280",
+        date: "20 April 2026",
+        description: "Melihat langsung habitat asli naga purba Komodo dan mendaki bukit Pulau Padar untuk pemandangan tiga warna pantai.",
+    },
+    {
+        id: 5,
+        title: "Ketenangan Desa Wisata Wae Rebo di Atas Awan",
+        image: "https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&q=80&w=800",
+        date: "10 May 2026",
+        description: "Desa adat di Flores ini menawarkan arsitektur rumah Mbaru Niang yang unik di tengah hamparan pegunungan hijau.",
+    },
+    {
+        id: 6,
+        title: "Menjelajahi Tebing Karang Pantai Kelingking",
+        image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=800",
+        date: "18 June 2026",
+        description: "Landmark terkenal di Nusa Penida yang berbentuk seperti T-Rex ini menjadi spot foto paling populer bagi wisatawan.",
+    },
+    {
+        id: 7,
+        title: "Keindahan Danau Toba dari Bukit Holbung",
+        image: "https://images.unsplash.com/photo-1642762205001-aada86f9dbe2",
+        date: "22 July 2026",
+        description: "Menikmati hamparan luas Danau Toba, danau vulkanik terbesar di dunia, dari ketinggian bukit yang hijau dan asri.",
+    },
+    {
+        id: 8,
+        title: "Relaksasi di Kawasan Ubud yang Menenangkan",
+        image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800",
+        date: "30 August 2026",
+        description: "Ubud menyajikan perpaduan antara terasering sawah yang indah, hutan kera, dan pusat seni budaya Bali.",
+    },
+    {
+        id: 9,
+        title: "Gili Trawangan: Surga Tropis Tanpa Polusi",
+        image: "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&q=80&w=800",
+        date: "12 September 2026",
+        description: "Nikmati kebebasan bersepeda mengelilingi pulau tanpa kendaraan bermotor dengan pemandangan air laut kristal.",
+    },
+];
 
 const ITEMS_PER_PAGE = 9;
 

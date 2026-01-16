@@ -23,15 +23,48 @@ const IMAGES = [
     "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=500",
 ];
 
-const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
-    id: i,
-    title: i % 2 === 0 ? `Curug Cilember ${i + 1}` : `Taman Safari ${i + 1}`,
-    image: i % 3 === 0
-        ? "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
-        : i % 3 === 1
-            ? "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=600"
-            : "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600"
-}));
+const ALL_DATA = [
+    {
+        id: 1,
+        title: "Candi Borobudur, Magelang",
+        image: "https://plus.unsplash.com/premium_photo-1700955004555-900a9733ee14?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9yb2J1ZHVyfGVufDB8fDB8fHww",
+    },
+    {
+        id: 2,
+        title: "Gunung Bromo, Jawa Timur",
+        image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+        id: 3,
+        title: "Raja Ampat, Papua Barat",
+        image: "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+        id: 4,
+        title: "Tanah Lot, Bali",
+        image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+        id: 5,
+        title: "Labuan Bajo, NTT",
+        image: "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8",
+    },
+    {
+        id: 6,
+        title: "Danau Toba, Sumatera Utara",
+        image: "https://images.unsplash.com/photo-1642762205001-aada86f9dbe2",
+    },
+    {
+        id: 7,
+        title: "Kelingking Beach, Nusa Penida",
+        image: "https://images.unsplash.com/photo-1704948211410-007f7d5f4355",
+    },
+    {
+        id: 8,
+        title: "Dieng, Jawa Tengah",
+        image: "https://images.unsplash.com/photo-1683602860321-76b30ad09a07",
+    },
+];
 
 const ITEMS_PER_PAGE = 8;
 
