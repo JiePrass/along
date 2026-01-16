@@ -37,15 +37,15 @@ const ALL_DATA = [
     },
     {
         id: 5,
-        title: "Ketenangan Desa Wisata Wae Rebo di Atas Awan",
-        image: "https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&q=80&w=800",
+        title: "Penangkaran Rusa Istana Bogor Cetak Rekor Populasi Baru",
+        image: "/images/article-2.png",
         date: "10 May 2026",
-        description: "Desa adat di Flores ini menawarkan arsitektur rumah Mbaru Niang yang unik di tengah hamparan pegunungan hijau.",
+        description: "Populasi rusa bertambah 15 ekor, total kini 120 ekor di lahan Istana.",
     },
     {
         id: 6,
         title: "Menjelajahi Tebing Karang Pantai Kelingking",
-        image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&q=80&w=800",
         date: "18 June 2026",
         description: "Landmark terkenal di Nusa Penida yang berbentuk seperti T-Rex ini menjadi spot foto paling populer bagi wisatawan.",
     },
@@ -66,7 +66,7 @@ const ALL_DATA = [
     {
         id: 9,
         title: "Gili Trawangan: Surga Tropis Tanpa Polusi",
-        image: "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1619681216575-d6b3964fc278?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lsaSUyMHRyYXdhbmdhbnxlbnwwfHwwfHx8MA%3D%3D",
         date: "12 September 2026",
         description: "Nikmati kebebasan bersepeda mengelilingi pulau tanpa kendaraan bermotor dengan pemandangan air laut kristal.",
     },
