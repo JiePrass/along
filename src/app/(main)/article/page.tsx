@@ -4,8 +4,6 @@ import ArticleCard from "@/components/shared/card/article-card";
 import PaginationComponent from "@/components/shared/pagination";
 import SearchFilter from "@/components/shared/search-filter";
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 
 const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
