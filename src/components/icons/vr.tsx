@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const LogoSimulatorIcon = ({ className, size = 64, ...props }: any) => (
+export const SimulatorIcon = ({ className, size = 64, ...props }: any) => (
     <svg
         width={size}
         height={size}

@@ -40,11 +40,6 @@ export default function KulinerPage() {
                             <p className="text-sm md:text-lg leading-relaxed max-w-lg mb-4 font-light">
                                 Jelajahi Berbagai Kuliner di Indonesia mulai dari sejarah, cara pembuatan, dan makna filosofinya.
                             </p>
-                            <div className="flex items-center">
-                                <Link href="/kuliner" className="pointer-events-auto border border-[#2D1C04] hover:bg-[#2D1C04] px-6 py-3 text-sm md:text-base uppercase tracking-widest hover:text-white transition-all flex items-center gap-2">
-                                    Jelajahi Sekarang <ArrowUpRight size={20} />
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>

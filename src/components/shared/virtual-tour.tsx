@@ -11,6 +11,7 @@ import { HeadVR } from "../icons/head-vr"; // Pastikan path ini benar
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Camera, ChevronLeft, ScanFace } from "lucide-react";
+import { SimulatorIcon } from "../icons/vr";
 
 // Registrasi Plugin GSAP
 gsap.registerPlugin(useGSAP);
@@ -56,8 +57,8 @@ const CurvedControls = ({ onClose, onScreenshot }: CurvedControlsProps) => {
             transformOrigin: "center right",
         }, 0)
             .to(rightBtn, {
-                x: 140, // Jarak ke kanan
-                y: 20,  // Turun sedikit
+                x: 140,
+                y: 20,
                 rotation: 10,
                 scale: 1,
                 opacity: 1,
@@ -66,7 +67,7 @@ const CurvedControls = ({ onClose, onScreenshot }: CurvedControlsProps) => {
             }, 0)
             .to(centerBtn, {
                 scale: 1.1,
-                backgroundColor: "#10b981", // Emerald 500
+                backgroundColor: "#10b981",
                 color: "#ffffff",
                 borderColor: "#34d399",
                 duration: 0.3
@@ -104,7 +105,7 @@ const CurvedControls = ({ onClose, onScreenshot }: CurvedControlsProps) => {
                     border-4 border-white/10 bg-black/60 backdrop-blur text-white shadow-2xl 
                     transition-all hover:scale-105 active:scale-95"
                 >
-                    <ScanFace size={30} />
+                    <SimulatorIcon size={30} />
                     <span className="text-[10px] font-bold mt-1 uppercase tracking-wider">
                         {isOpen ? 'Tutup' : 'Menu'}
                     </span>

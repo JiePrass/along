@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import VirtualTour from "@/components/shared/virtual-tour";
 import Map from "@/components/shared/map/map";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 gsap.registerPlugin(useGSAP);
 
@@ -199,7 +200,7 @@ export default function WisataDetailPage() {
             {/* CONTENT */}
             <section className="w-full overflow-hidden">
                 <div ref={textContainerRef} className="mb-12">
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bethany font-extralight leading-tight mb-4 md:mb-8 text-justify">
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bethany font-extralight leading-tight mb-4 md:mb-8 text-justify min-h-[3em]">
                         {activeSlide.headline}
                     </h2>
 
@@ -212,67 +213,61 @@ export default function WisataDetailPage() {
                         </div>
 
                         <div className="md:col-span-4 flex justify-start md:justify-end items-end h-full gap-4 mt-4 md:mt-0">
-                            <button
-                                onClick={handlePrev}
-                                className="w-12 h-12 rounded-full border border-[#2D1C04] flex items-center justify-center transition-colors duration-300 hover:bg-[#3E382A] hover:text-[#E8E8E0] active:scale-95"
-                                aria-label="Previous Slide"
-                            >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M15 18l-6-6 6-6" />
-                                </svg>
+                            <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-[#2D1C04] flex items-center justify-center transition-all hover:bg-[#3E382A] hover:text-[#E8E8E0] active:scale-90">
+                                <ChevronLeft size={24} />
                             </button>
-                            <button
-                                onClick={handleNext}
-                                className="w-12 h-12 rounded-full bg-[#2D1C04] text-[#E8E8E0] flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
-                                aria-label="Next Slide"
-                            >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M9 18l6-6-6-6" />
-                                </svg>
+                            <button onClick={handleNext} className="w-12 h-12 rounded-full bg-[#2D1C04] text-[#E8E8E0] flex items-center justify-center transition-all hover:scale-105 active:scale-90">
+                                <ChevronRight size={24} />
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <div className="relative w-full mt-8">
-                    <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 z-10 pointer-events-none bg-linear-to-l from-[#ddddd1] to-transparent" />
+                    <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 z-10 pointer-events-none bg-linear-to-l from-[#ddddd1] to-transparent" />
 
-                    <div
-                        ref={sliderRef}
-                        className="flex will-change-transform"
-                    >
-                        {SLIDES.map((slide, index) => (
-                            <div
-                                key={slide.id}
-                                onClick={() => handleCardClick(index)}
-                                className={`
-                                    relative shrink-0 
-                                    w-70 md:w-md lg:w-lg 
-                                    aspect-square cursor-pointer group overflow-hidden
-                                    transition-opacity duration-500
-                                `}
-                            >
-                                <Image
-                                    src={slide.image}
-                                    alt={slide.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
+                    <div ref={sliderRef} className="flex will-change-transform">
+                        {SLIDES.map((slide, index) => {
+                            const isActive = index === activeIndex;
+                            return (
+                                <div
+                                    key={slide.id}
+                                    onClick={() => handleCardClick(index)}
+                                    className={`
+                                        relative shrink-0 
+                                        w-70 md:w-md lg:w-lg 
+                                        aspect-square cursor-pointer overflow-hidden
+                                        transition-all duration-700 ease-in-out
+                                    `}
+                                >
+                                    <div className={`
+                                        absolute inset-0 z-10 transition-opacity duration-700
+                                        bg-white/40 backdrop-grayscale-[0.5]
+                                        ${isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+                                    `} />
 
-                                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                                    <Image
+                                        src={slide.image}
+                                        alt={slide.title}
+                                        fill
+                                        className={`object-cover transition-transform duration-700 ${isActive ? 'scale-100' : 'scale-110'}`}
+                                    />
 
-                                <div className="absolute top-6 left-6 right-6 flex justify-between items-start text-[#E8E8E0] font-bethany font-extralight">
-                                    <span className="text-lg font-medium tracking-widest">{slide.category}</span>
-                                    <span className="text-lg opacity-80">{slide.number}</span>
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent z-5" />
+
+                                    <div className="absolute top-6 left-6 right-6 flex justify-between items-start text-[#E8E8E0] font-bethany font-extralight z-20">
+                                        <span className="text-lg font-medium tracking-widest">{slide.category}</span>
+                                        <span className="text-lg opacity-80">{slide.number}</span>
+                                    </div>
+
+                                    <div className="absolute bottom-8 left-6 right-6 text-[#E8E8E0] z-20">
+                                        <h3 className="text-2xl md:text-3xl font-bethany font-extralight leading-tight">
+                                            {slide.title}
+                                        </h3>
+                                    </div>
                                 </div>
-
-                                <div className="absolute bottom-8 left-6 right-6 text-[#E8E8E0]">
-                                    <h3 className="text-2xl md:text-3xl font-bethany font-extralight leading-tight">
-                                        {slide.title}
-                                    </h3>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>

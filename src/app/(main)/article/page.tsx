@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const ALL_DATA = Array.from({ length: 64 }).map((_, i) => ({
     id: i,
-    title: i % 2 === 0 ? `Ayam Betutu ${i + 1}` : `Soto Betawi ${i + 1}`,
+    title: i % 2 === 0 ? `Pemkot Bogor ${i + 1}` : `Dinas Perhubungan ${i + 1}`,
     image: i % 3 === 0
         ? "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
         : i % 3 === 1
